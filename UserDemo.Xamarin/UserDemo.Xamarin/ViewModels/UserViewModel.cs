@@ -9,18 +9,24 @@ using UserDemo.Xamarin.Models;
 
 namespace UserDemo.Xamarin.ViewModels
 {
+
     public class UserViewModel
     {
-        private const string url = "https://reqres.in/api/users?page=2";
-        private HttpClient _Client = new HttpClient();
-        public ObservableCollection<Data> UsersList { get; private set; } = new ObservableCollection<Data>();
+        private const string Url = "https://reqres.in/api/users?page=2";
+        private HttpClient _client = new HttpClient();
+        //public ObservableCollection<Data> UsersList { get; private set; } = new ObservableCollection<Data>();
+        public List<Data> UsersList { get; private set; } = new List<Data>();
 
-        public async Task<ObservableCollection<Data>> LoadUsersList()
+        public async Task<List<Data>> LoadUsersList()
         {
-            var content = await _Client.GetStringAsync(url);
+            var content = await _client.GetStringAsync(Url);
+
             var users = JsonConvert.DeserializeObject<RootObject>(content);
-            UsersList = new ObservableCollection<Data>(users.data);
+            UsersList = new List<Data>(users.data);
+
             return UsersList;
         }
+
+        // TODO: Move the Database logic to this Class
     }
 }

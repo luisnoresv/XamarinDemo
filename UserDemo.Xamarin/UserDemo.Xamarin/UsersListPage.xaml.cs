@@ -21,20 +21,19 @@ namespace UserDemo.Xamarin
 			InitializeComponent();
 
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
-            
 		}
-
-
-
+        
         protected override async void OnAppearing()
         {
             await _connection.CreateTableAsync<User>();
+            
             //SaveUsersOnStorage();
 
             var users = await _connection.Table<User>().ToListAsync();
             _users = new ObservableCollection<User>(users);
 
             usersListView.ItemsSource = _users;
+
             base.OnAppearing();
         }
 
@@ -50,6 +49,7 @@ namespace UserDemo.Xamarin
                 userForStore.AvatarUrl = user.avatar;
                 usersForStore.Add(userForStore);
             }
+
             await _connection.InsertAllAsync(usersForStore);
         }
     }
