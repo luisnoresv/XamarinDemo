@@ -14,7 +14,6 @@ namespace UserDemo.Xamarin.ViewModels
     {
         private const string Url = "https://reqres.in/api/users?page=2";
         private HttpClient _client = new HttpClient();
-        //public ObservableCollection<Data> UsersList { get; private set; } = new ObservableCollection<Data>();
         public List<Data> UsersList { get; private set; } = new List<Data>();
 
         public async Task<List<Data>> LoadUsersList()
