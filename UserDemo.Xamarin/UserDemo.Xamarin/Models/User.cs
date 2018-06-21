@@ -1,7 +1,4 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace UserDemo.Xamarin.Models
 {
@@ -10,6 +7,8 @@ namespace UserDemo.Xamarin.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+        public int UserCode { get; set; }
 
         [MaxLength(50)]
         public string FirstName { get; set; }

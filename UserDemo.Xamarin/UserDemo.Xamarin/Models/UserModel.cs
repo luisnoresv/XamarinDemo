@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UserDemo.Xamarin.Models
+﻿namespace UserDemo.Xamarin.Models
 {
     public class Data
     {

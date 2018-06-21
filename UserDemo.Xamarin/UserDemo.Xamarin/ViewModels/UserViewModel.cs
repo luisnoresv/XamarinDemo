@@ -1,31 +1,27 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using UserDemo.Xamarin.Models;
+using UserDemo.Xamarin.Persistence;
 
 namespace UserDemo.Xamarin.ViewModels
 {
 
     public class UserViewModel
     {
-        private const string Url = "https://reqres.in/api/users?page=2";
-        private HttpClient _client = new HttpClient();
-        public List<Data> UsersList { get; private set; } = new List<Data>();
+        private readonly IUserRepository _repository;
 
-        public async Task<List<Data>> LoadUsersList()
+        public List<User> UsersList { get; private set; } = new List<User>();
+
+        public UserViewModel(IUserRepository repository)
         {
-            var content = await _client.GetStringAsync(Url);
-
-            var users = JsonConvert.DeserializeObject<RootObject>(content);
-            UsersList = new List<Data>(users.data);
-
-            return UsersList;
+            _repository = repository;
         }
 
-        // TODO: Move the Database logic to this Class
+        public async Task<List<User>> LoadUsersList()
+        {
+            return await _repository.GetUsersList();
+        }
     }
 }

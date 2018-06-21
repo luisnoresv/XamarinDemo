@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UserDemo.Xamarin.UsersListPage">
     <ContentPage.Content>
-        <ListView x:Name="usersListView" HasUnevenRows="True" ItemsSource="{Binding _users}">
+        <ListView x:Name="usersListView" HasUnevenRows="True" ItemsSource="{Binding UsersList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
