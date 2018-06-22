@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using UserDemo.Xamarin.Models;
 using UserDemo.Xamarin.Persistence;
+using Xamarin.Forms;
 
 namespace UserDemo.Xamarin.ViewModels
 {
@@ -19,9 +20,19 @@ namespace UserDemo.Xamarin.ViewModels
             _repository = repository;
         }
 
-        public async Task<List<User>> LoadUsersList()
+        public async Task<UserViewModel> Initialize()
         {
-            return await _repository.GetUsersList();
+            try
+            {
+                UsersList = await _repository.GetUsersList();
+
+                return this;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -1,19 +1,30 @@
-﻿namespace UserDemo.Xamarin.Models
+﻿using Newtonsoft.Json;
+
+namespace UserDemo.Xamarin.Models
 {
     public class Data
     {
-        public int id { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string avatar { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public int Id { get; set; }
+        [JsonProperty(PropertyName = "first_name")]
+        public string FirstName { get; set; }
+        [JsonProperty(PropertyName = "last_name")]
+        public string LastName { get; set; }
+        [JsonProperty(PropertyName = "avatar")]
+        public string AvatarUrl { get; set; }
     }
 
     public class RootObject
     {
-        public int page { get; set; }
-        public int per_page { get; set; }
-        public int total { get; set; }
-        public int total_pages { get; set; }
+        [JsonProperty(PropertyName = "page")]
+        public int Page { get; set; }
+        [JsonProperty(PropertyName = "per_page")]
+        public int PerPage { get; set; }
+        [JsonProperty(PropertyName = "total")]
+        public int Total { get; set; }
+        [JsonProperty(PropertyName = "total_pages")]
+        public int TotalPages { get; set; }
+
         public Data[] data { get; set; }
 
     }

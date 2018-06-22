@@ -10,18 +10,25 @@ namespace UserDemo.Xamarin.Services
 {
     public class UserService
     {
-        private const string Url = "https://reqres.in/api/users?page=2";
+        private const string Url = "https://reqres.in/api/users?page=4";
 
         private HttpClient _client = new HttpClient();
 
         public async Task<List<Data>> GetUsersFromService()
         {
-            var content = await _client.GetStringAsync(Url);
+            try
+            {
+                var content = await _client.GetStringAsync(Url);
 
-            var users = JsonConvert.DeserializeObject<RootObject>(content);
-            var usersList = new List<Data>(users.data);
+                var users = JsonConvert.DeserializeObject<RootObject>(content);
 
-            return usersList;
+                var usersList = new List<Data>(users.data);
+                return usersList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
