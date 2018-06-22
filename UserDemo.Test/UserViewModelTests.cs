@@ -10,6 +10,8 @@ namespace UserDemo.Test
     [TestFixture]
     public class UserViewModelTests
     {
+        // TODO: The unit testing project is on Progress
+
         private UserViewModel _viewModel;
         private Mock<IUserRepository> _repository;
         private UserService _service;
@@ -24,6 +26,7 @@ namespace UserDemo.Test
         [Test]
         public void Initialize_WhenCalled_TheModelShouldBeShowTheListofUsers()
         {
+            
             var repository = _repository.Object.GetUsersList();
             
         }
