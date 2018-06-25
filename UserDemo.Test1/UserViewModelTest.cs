@@ -2,16 +2,17 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using UserDemo.Xamarin.Models;
 using UserDemo.Xamarin.Persistence;
-using UserDemo.Xamarin.Services;
 using UserDemo.Xamarin.ViewModels;
 
-namespace UserDemo.Test
+namespace UserDemo.Test1
 {
     [TestFixture]
-    public class UserViewModelTests
+    public class UserViewModelTest
     {
         // TODO: The unit testing project is on Progress
 
@@ -32,18 +33,17 @@ namespace UserDemo.Test
             };
 
             _repository.Setup(u => u.GetUsersList()).ReturnsAsync(usersList);
-            
+
         }
 
         [Test]
-        public async void Initialize_WhenCalled_TheViewModelShouldBeShowTheListofUsers()
+        public async Task Initialize_WhenCalled_TheViewModelShouldBeShowTheListofUsers()
         {
             await _viewModel.Initialize();
             var userList = _viewModel.UsersList;
 
-            Assert.AreEqual(4,userList.Count);
+            Assert.AreEqual(4, userList.Count);
+            Assert.AreSame("Luis", userList[0].FirstName);
         }
-
-
     }
 }
