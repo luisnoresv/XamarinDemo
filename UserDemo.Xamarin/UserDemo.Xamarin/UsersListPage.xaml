@@ -3,20 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UserDemo.Xamarin.UsersListPage">
     <ContentPage.Content>
-        <ListView x:Name="UsersListView" HasUnevenRows="True" ItemsSource="{Binding UsersList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="5">
-                            <Image Source="{Binding AvatarUrl}"/>
-                            <StackLayout HorizontalOptions="StartAndExpand">
-                                <Label Text="{Binding FirstName}"></Label>
-                                <Label Text="{Binding LastName}" TextColor="DarkGray"></Label>
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <Grid BackgroundColor="LightGray">
+            <ListView x:Name="UsersListView" ItemTapped="UsersListView_ItemTapped" HasUnevenRows="True" ItemsSource="{Binding UsersList}" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding FirstName}"></TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Padding="5" Grid.Column="1" BackgroundColor="White" x:Name="UserDetail">
+                <!--<Image Source="{Binding AvatarUrl}"/>
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="{Binding FirstName}"></Label>
+                    <Label Text="{Binding LastName}" TextColor="DarkGray"></Label>
+                </StackLayout>-->
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
